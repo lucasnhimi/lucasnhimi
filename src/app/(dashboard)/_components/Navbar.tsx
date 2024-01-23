@@ -1,4 +1,4 @@
-import { UserButton } from '@clerk/nextjs';
+import { UserButton, SignedIn, SignedOut, SignInButton } from '@clerk/nextjs';
 import { Logo } from './logo';
 import { MobileSidebar } from './mobile-sidebar';
 
@@ -8,7 +8,16 @@ export default function Navbar() {
       <Logo />
       <MobileSidebar />
       <div className='ml-auto'>
-        <UserButton afterSignOutUrl='/' />
+        <SignedIn>
+          <UserButton afterSignOutUrl='/' />
+        </SignedIn>
+        <SignedOut>
+          <SignInButton mode='modal'>
+            <button className='border rounded-md border-gray-400 px-3 py-2'>
+              Fazer Login
+            </button>
+          </SignInButton>
+        </SignedOut>
       </div>
     </nav>
   );
